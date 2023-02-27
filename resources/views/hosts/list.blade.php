@@ -5,11 +5,12 @@
 
 @section('content')
 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-    <div class="grid grid-cols-1 md:grid-cols-2">
+    <div class="grid grid-cols-1 ">
         <table >
             <thead>
                 <tr>
                   <th >Nom</th>
+                  <th >Vendor</th>
                   <th >IP</th>
                   <th >MAC</th>
                   <th >Up (ago)</th>
@@ -19,6 +20,7 @@
                 @foreach ($hosts as $host)
                 <tr>
                     <th >{{$host->name}}</th>
+                    <th >{{$host->vendor}}</th>
                     <td >{{$host->lastIp}}</td>
                     <td >{{$host->mac}}</td>
                     <td >{{$host->lastUp}}</td>
