@@ -7,6 +7,9 @@ use DOMElement;
 use DOMDocument;
 use DOMXPath;
 
+use App\Models\Host;
+use Carbon\Carbon;
+
 class NmapParser extends Command
 {
     /**
@@ -55,15 +58,41 @@ class NmapParser extends Command
             $macNode = $xpath->query('.//address[contains(@addrtype, "mac")]', $host)->item(0);
             $ip4Node = $xpath->query('.//address[contains(@addrtype, "ipv4")]', $host)->item(0);
 
+            /** @var DOMElement $ip4Node */
+            $ipv4Address = $ip4Node->getAttribute('addr');
+
             if ($macNode) {
                 /** @var DOMElement $macNode */
                 $macAddress = $macNode->getAttribute('addr');
                 $vendor = $macNode->getAttribute('vendor');
+                $this->addHost($macAddress, [
+                    'vendor' => $vendor,
+                    'lastIp' => $ipv4Address,
+                    'lastUp' => Carbon::now(),
+                ]);
             }
 
-            /** @var DOMElement $ip4Node */
-            $ipv4Address = $ip4Node->getAttribute('addr');
             $this->info("{$macAddress} {$ipv4Address} {$vendor}");
         }
+    }
+
+    public function addHost($macAddress, $attributes = [])
+    {
+        $host = Host::byMacAddress($macAddress);
+        if (!$host) {
+            $host = new Host();
+            $host->mac = $macAddress;
+        }
+        if (isset($attributes['vendor'])) {
+            $host->vendor = $attributes['vendor'];
+        }
+        if (isset($attributes['lastIp'])) {
+            $host->lastIp = $attributes['lastIp'];
+        }
+        if (isset($attributes['lastUp'])) {
+            $host->lastUp = $attributes['lastUp'];
+        }
+        $host->save();
+        return $host;
     }
 }
