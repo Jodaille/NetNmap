@@ -4,7 +4,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About NetMap
+## About NetNmap
 
 NetNmap simply parse [ nmap ](https://nmap.org/) XML ouptput and save hosts on (local) network in a MySQL/MariaDB table.
 
