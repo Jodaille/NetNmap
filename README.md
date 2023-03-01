@@ -6,7 +6,7 @@
 
 ## About NetMap
 
-NetMap simply parse [ nmap ](https://nmap.org/) XML ouptput and save hosts on (local) network in a MySQL/MariaDB table.
+NetNmap simply parse [ nmap ](https://nmap.org/) XML ouptput and save hosts on (local) network in a MySQL/MariaDB table.
 
 <p>Host (interface) retrieved by MAC address can be named. I have several esp8266/SonOff and never remember which is which</p>
 
@@ -38,4 +38,4 @@ sudo nmap -oX storage/nmap.xml  -sn 192.168.1.0/24 && php artisan nmap:parse sto
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-NetMap is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+NetNmap is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
