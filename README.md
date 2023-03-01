@@ -6,9 +6,9 @@
 
 ## About NetMap
 
-NetMap simply parse [ nmap ](https://nmap.org/) XML ouptput and save hosts on (local) network in a MySQL/MariaDB table.</
+NetMap simply parse [ nmap ](https://nmap.org/) XML ouptput and save hosts on (local) network in a MySQL/MariaDB table.
 
-<p>A name can be associated with host (interface) retrieved by MAC address.</p>
+<p>Host (interface) retrieved by MAC address can be named. I have several esp8266/SonOff and never remember which is which</p>
 
 <p>&nbsp;</p>
 
@@ -26,6 +26,12 @@ Script to scan, save XML and import results with parser [crontask.sh](crontask.s
 
 ```
 */5 * * * * ~/websites/NetNmap/crontask.sh >/dev/null 2>&1
+```
+
+
+or basically:
+```
+sudo nmap -oX storage/nmap.xml  -sn 192.168.1.0/24 && php artisan nmap:parse storage/nmap.xml
 ```
 
 ## License
