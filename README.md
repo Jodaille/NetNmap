@@ -6,7 +6,7 @@
 
 ## About NetMap
 
-<p>NetMap simply parse [nmap](https://nmap.org/) XML ouptput and save hosts on (local) network in a MySQL/MariaDB table.</p>
+NetMap simply parse [ nmap ](https://nmap.org/) XML ouptput and save hosts on (local) network in a MySQL/MariaDB table.</
 
 <p>A name can be associated with host (interface) retrieved by MAC address.</p>
 
