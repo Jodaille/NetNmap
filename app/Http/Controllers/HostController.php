@@ -19,4 +19,20 @@ class HostController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+        $params = json_decode($request->getContent());
+        $host = Host::find($params->id);
+        if ($host) {
+            $host->name = $params->name;
+            $host->save();
+        }
+        return response()->json([
+            'status' => strtolower('Success'),
+            'host' => $host,
+            'id' => $params->id,
+        ]);
+    }
 }

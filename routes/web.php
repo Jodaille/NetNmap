@@ -13,6 +13,7 @@ use App\Http\Controllers\HostController;
 |
 */
 Route::get('/', [HostController::class, 'list'])->name('welcome');
+Route::post('/host/update', [HostController::class, 'update'])->name('host.update');
 Route::get('/welcome', function () {
     return view('welcome');
 });
